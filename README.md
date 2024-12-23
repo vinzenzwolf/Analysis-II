@@ -1,3 +1,3 @@
 # Analysis-II
 
-This is my Cheatsheet for the  Analysis-II @ETH Zürich. Feel free to create a pull request if you find any mistakes. No guarantee for correctness ;)
+Forked Cheatsheet from Nicolas Wehrli. I adapted a few things to fit the current (HS24) course.  No guarantee for correctness ;)
