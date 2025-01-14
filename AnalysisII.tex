@@ -154,19 +154,16 @@ $f'(x+2) = f(x)$ is not an \textbf{ordinary} differential equation.
 \subsection{Linear ODE's of order 1}
 $I \subset \R$ be an open interval.
 
-We consider the diff. equation of the form \[y' + a(x)y = b(x)\]
+We consider the diff. equation of the form \[y' = f(x)y + g(x)\]
 \begin{enumerate}
   \item (Homogeneous solution) 
   \begin{align*}
-    y' + a(x)y &= 0\\
-    \frac{y'}{y} &= -a(x) \quad (\text{assuming } y \neq 0, \forall x \in I)\\
-    \ln(|y|) &= -A(x)+C\\
-    y &= e^C \cdot e^{-A(x)} = Ke^{-A(x)}, K \in \C
+    y_h = c \cdot e^{\int f(x) dx} \quad c \in \mathbb{R}
   \end{align*}
-  If an initial condition is given, we can determine $K$.
   \item (Particular solution) 
-  
-  Use either ``Variation of parameters'' or ``Educated guess''.
+  \begin{align*}
+    y_p = y_h \cdot \int \frac{g(x)}{y_h} dx
+  \end{align*}
 \end{enumerate}
 \subsection{Variation of parameters}
 We assume that the particular solution is of the form \(f_p = K(x)e^{-A(x)}\) for a function \(K: I \to \C\). Then we can insert our guess into the ODE and see what it forces $K$ to satisfy. We get 
@@ -360,6 +357,9 @@ Let \(f: \X \subset \R^n \to \R^m\) and \(\X\) an open set. The Jacobi-Matrix is
 % \end{subbox}
 
 \subsection{Differentiability}
+
+\includegraphics[width=\linewidth]{Implications_Diff.png}
+
 \begin{mainbox}{Differentiability}
     Let $\X \subset \R^n$ be open, $x_0 \in \X$. We have 
     $f: \X \to \R^m$. 
@@ -393,6 +393,10 @@ Let \(f: \X \subset \R^n \to \R^m\) and \(\X\) an open set. The Jacobi-Matrix is
   The \textbf{tangent space} at $x_0$ of \(f\) is given by the graph of the affine linear map \(g(x) = f(x_0) + df(x_0)(x-x_0)\).
   
   I.e. \[\{(x,g(x)) \in \R^n\times\R^m \mid g(x) = f(x_0) + df(x_0)(x-x_0)\}\]
+
+  For two variables we have:
+  \[ z(x,y) = f(x_0,y_0) + \partial_x f(x_0,y_0) \cdot (x-x_0)+ \partial_y f(x_0,y_0) \cdot (y-y_0)\]
+
 \end{subbox}
 
 \begin{mainbox}{Change of variables (Bijection)}
@@ -492,21 +496,14 @@ Eigenvalues can be found with the characterstic polynomial:
 For non-symmetric Matrices we have to test for all Vectors \(v\), if \(v^\top A v > 0\) (rsp. \(< 0\)).
 \subsubsection*{3D Determinant}
 \begin{align*}
-  a \cdot \text{det}
+  \text{det}
   \begin{pmatrix}
-    e & f\\
-    h & i
+    a&b&c\\
+    d&e&f\\
+    g&h&i
   \end{pmatrix}
-  - b \cdot \text{det}
-  \begin{pmatrix}
-    d & f\\
-    g & i
-  \end{pmatrix}
-  + c \cdot \text{det}
-  \begin{pmatrix}
-    d & e\\
-    g & h
-  \end{pmatrix}
+  = 
+  a \cdot e \cdot i + b \cdot f \cdot g + c \cdot d \cdot h - g \cdot e \cdot c - h \cdot f \cdot a - i \cdot d \cdot b
 \end{align*}
 
 \begin{subbox}{Principal Minor}
@@ -580,6 +577,8 @@ A differentiable function \(g: \X \subset \R^n \mapsto \R\) with \(\nabla g = f,
 \end{align*}
 For a function $f: \R^n \to \R^n$ there is not always a potential $g$! And continuity of $f$ is not sufficient for the existence of a potential for $f$. (Counterexample: $f(x,y) = (2xy^2,2x)$)
 \subsection{Conservative Vector fields}
+\includegraphics[width = \linewidth]{Implications_cons.png}
+
 \begin{subbox}{Conservative Vector fields}
     $f: \X \to \R^n$ continous Vector field. If for any $x_1, x_2 \in \X$ the line integrals $\int_{\gamma}f \mathop{ds}$ for any curve between $x_1,x_2$ are equal, $f$ is called \textbf{conservative}.
 \end{subbox}
@@ -618,6 +617,14 @@ If \(\X\) is a starshaped, open subset of \(\R^n\) and \(f \in C^1\) a vector fi
   \partial_z f_1 - \partial_x f_3 \\
   \partial_x f_2 - \partial_y f_1
 \end{pmatrix}\]
+
+Divergence of a vector Field is defined as: \\
+\[ \text{div} F = \nabla \cdot F = \frac{\partial F_x}{\partial x} + \frac{\partial F_y}{\partial y} + \frac{\partial F_z}{\partial z}\]
+
+From series we know that:
+\[ \text{div}(\text{curl}(F)) = 0\]
+
+
 \subsection{Riemann Integral in \texorpdfstring{\(\R^n\)}{Rⁿ}}
 \begin{subbox}{Cuboid / box in $\R^n$}
     A \textbf{cuboid} or box $Q \subset \R^n$ is a set of the form
@@ -744,7 +751,7 @@ Then we have the following:
 \begin{enumerate}
   \item Polar coordinates: \[\gamma(r, \theta) = (r \cos(\theta), r \sin(\theta))\] with \(\mathop{dx}\mathop{dy} = r \mathop{dr} \mathop{d\theta}\)
   \item Cylindrical coordinates: \[\gamma(r, \theta, z) = (r \cos(\theta), r \sin(\theta), z)\] with \(\mathop{dx} \mathop{dy} \mathop{dz} = r \mathop{dr} \mathop{d\theta} \mathop{dz}\)
-  \item Spherical coordinates: \[\gamma(r, \theta, \varphi) = (r\sin(\varphi)\cos(\theta), r \sin(\varphi)\sin(\theta), r \cos(\varphi))\] with \(\mathop{dx}\mathop{dy}\mathop{dz} = r^2 \sin(\varphi) \mathop{dr} \mathop{d\theta} \mathop{d\varphi}\)
+  \item Spherical coordinates: \[ a \le x^2,y^2,z^2 \le b\] \[\gamma(r, \theta, \varphi) = (r\sin(\varphi)\cos(\theta), r \sin(\varphi)\sin(\theta), r \cos(\varphi))\] with \(\mathop{dx}\mathop{dy}\mathop{dz} = \int_{\sqrt{a}}^{\sqrt{b}}\int_{o}^{\pi}  r^2 \sin(\varphi) \mathop{dr} \mathop{d\theta} \mathop{d\varphi}\)
 \end{enumerate}
 
 \textbf{Don't forget the determinant of the Jacobi-Matrix!}
