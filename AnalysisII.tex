@@ -750,11 +750,13 @@ Then we have the following:
 
 \begin{enumerate}
   \item Polar coordinates: \[\gamma(r, \theta) = (r \cos(\theta), r \sin(\theta))\] with \(\mathop{dx}\mathop{dy} = r \mathop{dr} \mathop{d\theta}\)
+  \item Ellipse with: $(x,y) = (a \cdot r\cdot cos(\theta), b \cdot r \cdot sin(\theta))$ with $\mathop{dx} \mathop{dy} = a \cdot b \cdot r \mathop{dr} \mathop{d \theta}$
   \item Cylindrical coordinates: \[\gamma(r, \theta, z) = (r \cos(\theta), r \sin(\theta), z)\] with \(\mathop{dx} \mathop{dy} \mathop{dz} = r \mathop{dr} \mathop{d\theta} \mathop{dz}\)
-  \item Spherical coordinates: \[ a \le x^2,y^2,z^2 \le b\] \[\gamma(r, \theta, \varphi) = (r\sin(\varphi)\cos(\theta), r \sin(\varphi)\sin(\theta), r \cos(\varphi))\] with \(\mathop{dx}\mathop{dy}\mathop{dz} = \int_{\sqrt{a}}^{\sqrt{b}}\int_{o}^{\pi}  r^2 \sin(\varphi) \mathop{dr} \mathop{d\theta} \mathop{d\varphi}\)
+  \item Spherical coordinates: \[ a \le x^2,y^2,z^2 \le b\] \[\gamma(r, \theta, \varphi) = (r\sin(\varphi)\cos(\theta), r \sin(\varphi)\sin(\theta), r \cos(\varphi))\] with \(\mathop{dx}\mathop{dy}\mathop{dz} = \int_{\sqrt{a}}^{\sqrt{b}}\int_{o}^{2\pi}\int_{o}^{\pi}  r^2 \sin(\varphi) \mathop{d\varphi} \mathop{d\theta} \mathop{dr}\)
 \end{enumerate}
 
 \textbf{Don't forget the determinant of the Jacobi-Matrix!}
+
 
 \subsection{Green's theorem}
 Green's theorem only concerns itself with functions from a $2$-dimensional to a $2$-dimensional space. 
@@ -780,6 +782,14 @@ For any curve $\gamma: [a,b] \to \R^2$
   \item General Ellipse Equation around $(x_0, y_0)$: $$\frac{(x-x_0)^2}{a^2} + \frac{(y-y_0)^2}{b^2} = 1$$ can be parameterized by $$f(t) = (x_0 + a \cdot \cos(2\pi t), y_0 + b \cdot \sin(2\pi t)), t \in [0, 2\pi]$$
   \item Any curve given by an explicit equation $$y = f(x), f: [a,b] \to \R,$$ can be parameterized trivially by $(x, y) = (t, f(t))$ for some $t \in [a, b]$.
 \end{itemize}
+
+\subsection{Center of Gravity}
+The center of gravity $\overline{x}$ of a compact set $U$ can be calculated as follows:
+$$\overline{x}_i = \frac{1}{\text{vol}(U)} \int_U x_i d x$$
+
+The Volume of a sphere: 
+$$V= \frac{4}{3} \cdot \pi \cdot r^3$$
+
 
 
 \section{Topics from Analysis I}
